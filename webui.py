@@ -27,7 +27,7 @@ from sparktts.utils.token_parser import LEVELS_MAP_UI
 def initialize_model(model_dir="pretrained_models/Spark-TTS-0.5B", device=0):
     """Load the model once at the beginning."""
     logging.info(f"Loading model from: {model_dir}")
-    device = torch.device(f"cuda:{device}")
+    device = torch.device(f"cuda:{device}") if torch.cuda.is_available() else torch.device("cpu")
     model = SparkTTS(model_dir, device)
     return model
 
